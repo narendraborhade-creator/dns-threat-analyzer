@@ -1,0 +1,62 @@
+type http_request_result = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type http_header = 
+ record {
+   name: text;
+   value: text;
+ };
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: http_request_result;
+ };
+type Timestamp = int;
+type ThreatCategory = 
+ variant {
+   AmplificationRisk;
+   DnssecRisk;
+   EncryptionRisk;
+   HijackingRisk;
+   NameserverLegitimacy;
+   TldRisk;
+ };
+type DomainAnalysis = 
+ record {
+   categoryScores: vec CategoryScore;
+   checkedAt: Timestamp;
+   domain: text;
+   overallScore: nat;
+   rawDnsJson: text;
+ };
+type ComparisonResult = 
+ record {
+   domainA: DomainAnalysis;
+   domainB: DomainAnalysis;
+   exportedAt: Timestamp;
+ };
+type CategoryScore = 
+ record {
+   category: ThreatCategory;
+   details: text;
+   passed: bool;
+   score: nat;
+ };
+service : {
+  analyzeDomain: (domain: text) -> (DomainAnalysis);
+  clearCache: (domain: text) -> ();
+  compareDomains: (domainA: text, domainB: text) -> (ComparisonResult);
+  exportComparison: (domainA: text, domainB: text) -> (text);
+  getCachedAnalysis: (domain: text) -> (opt DomainAnalysis) query;
+  listAnalysedDomains: () -> (vec text) query;
+  transform: (input: TransformationInput) -> (TransformationOutput) query;
+}

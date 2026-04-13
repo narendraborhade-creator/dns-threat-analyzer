@@ -1,0 +1,23 @@
+{
+  "overview": "A live DNS security and network threat analysis tool that lets users compare two domains side-by-side. It validates DNSSEC, nameserver legitimacy, DNS hijacking risks, and TLD validity, then displays results in a combined threat dashboard with interactive 3D visualizations and an immersive 3D background.",
+  "features": [
+    "Live DNS security analysis (DNSSEC, nameserver, hijacking, TLD checks)",
+    "Side-by-side domain comparison with synchronized threat scoring",
+    "Combined threat dashboard with category breakdowns and risk matrix",
+    "Immersive 3D background with animated globe and particle DNS flows",
+    "Interactive 3D radar/spider charts and threat matrix visualizations",
+    "Drill-down remediation guides for each detected risk",
+    "Export comparison results as JSON"
+  ],
+  "category": "productivity-security",
+  "tags": [
+    "dns",
+    "security",
+    "3d",
+    "visualization",
+    "network",
+    "threat-analysis",
+    "comparison"
+  ],
+  "last_updated": "2026-04-13T02:05:06.285Z"
+}

@@ -1,0 +1,43 @@
+// Version: 1.0.0
+type CategoryScore__877627165 =
+  {
+    category : ThreatCategory__210669842;
+    details : Text;
+    passed : Bool;
+    score : Nat
+  };
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type DomainAnalysis__321673906 =
+  {
+    categoryScores : [CategoryScore__877627165];
+    checkedAt : Timestamp__1065626066;
+    domain : Text;
+    overallScore : Nat;
+    rawDnsJson : Text
+  };
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type ThreatCategory__210669842 =
+  {
+    #AmplificationRisk;
+    #DnssecRisk;
+    #EncryptionRisk;
+    #HijackingRisk;
+    #NameserverLegitimacy;
+    #TldRisk
+  };
+type Timestamp__1065626066 = Timestamp__301639476;
+type Timestamp__301639476 = Int;
+actor {
+  stable analysisCache :
+    {
+      var root : Node__46230540<Text, DomainAnalysis__321673906>;
+      var size : Nat__490723111
+    }
+};
